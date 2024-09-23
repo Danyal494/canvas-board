@@ -19,6 +19,7 @@ color:string
 
 function App() {
   const [color, setColor] = useState<string>('#000')
+ 
   const { canvasRef, onMouseDown, clear } = useDraw(createLine)
 
   useEffect(() => {
@@ -62,9 +63,11 @@ function App() {
   }
 
   return (
-    <div className=" bg-white flex justify-center items-center">
-      <ChromePicker color={color} onChange={(e) => setColor(e.hex)}/>
-        <button type='button' onClick={()=> socket.emit('clear')}>Clear canvas</button>
+    <div className=" bg-white flex justify-center  items-center">
+      <div className='flex-col m-5'>
+      <ChromePicker className='my-7' color={color} onChange={(e) => setColor(e.hex)}/>
+        <button className= 'shadow-md p-4 rounded-lg bg-slate-500  text-white' type='button' onClick={()=> socket.emit('clear')}>Clear Canvas</button>
+      </div>
     <canvas
 onMouseDown={onMouseDown}
       ref={canvasRef}
